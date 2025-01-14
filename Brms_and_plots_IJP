@@ -11,9 +11,9 @@ conflicts_prefer(stats::lag)
 csv <- read_csv("~/Desktop/Jan2024_Morph.csv")
 View(csv)
 
-######## Redoing PFG and Diversity Stats without M8 - M10 ########
+# Redoing PFG and Diversity Stats without M8 - M10 #
 
-### Diversity ###
+#### Diversity ####
 
 hist(csv$Div_New)
 #slightly left skewed
@@ -31,11 +31,6 @@ Div1 <-brm(Div_New ~ AgeY + (1|Monkey), data = csv,
 summary(Div1)
 plot(Div1)
 pp_check(Div1)
-#pp_check doesn't look great actually....
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     0.76      0.13     0.50     1.01 1.00     8585     2621
-#AgeY         -0.01      0.01    -0.03     0.01 1.00     8601     2645
 
 Div2 <-brm(Div_New ~ Sex + (1|Monkey), data = csv,
            family = poisson(),
@@ -43,11 +38,7 @@ Div2 <-brm(Div_New ~ Sex + (1|Monkey), data = csv,
 summary(Div2)
 plot(Div2)
 pp_check(Div2)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     0.67      0.07     0.54     0.80 1.00     8548     3188
-#SexMale      -0.04      0.11    -0.25     0.18 1.00     7827     2990
-#SexUNK       -0.12      0.32    -0.78     0.46 1.00     5821     2703
+
 
 Div3 <-brm(Div_New ~ Rank + (1|Monkey), data = csv,
            family = poisson(),
@@ -55,10 +46,6 @@ Div3 <-brm(Div_New ~ Rank + (1|Monkey), data = csv,
 summary(Div3)
 plot(Div3)
 pp_check(Div3)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     0.63      0.12     0.38     0.86 1.00     4967     2876
-#Rank          0.01      0.03    -0.05     0.06 1.00     5231     3139
 
 
 Div4 <-brm(Div_New ~ Group + (1|Monkey), data = csv,
@@ -68,13 +55,7 @@ Div4 <-brm(Div_New ~ Group + (1|Monkey), data = csv,
 summary(Div4)
 plot(Div4)
 pp_check(Div4)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     0.67      0.10     0.47     0.85 1.00     3626     2717
-#GroupBC       0.04      0.17    -0.31     0.37 1.00     4511     3180
-#GroupGN       0.08      0.14    -0.20     0.36 1.00     3547     2630
-#GroupLV      -0.16      0.17    -0.50     0.16 1.00     4164     3227
-#GroupRM      -0.06      0.15    -0.35     0.23 1.00     4452     3510
+
 
 Div5 <-brm(Div_New ~ Season + (1|Monkey), data = csv,
            family = poisson(),
@@ -82,12 +63,9 @@ Div5 <-brm(Div_New ~ Season + (1|Monkey), data = csv,
 summary(Div5)
 plot(Div5)
 pp_check(Div5)
-#Population-Level Effects: 
-#  Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept       0.72      0.09     0.54     0.89 1.00     7658     2842
-#SeasonRAINY    -0.09      0.11    -0.31     0.13 1.00     9461     2807
 
-### PFG ###
+
+#### PFG ####
 hist(csv$PFG_New)
 #slightly left skewed
 mean(csv$PFG_New)
@@ -101,12 +79,7 @@ PFG1 <-brm(PFG_New ~ AgeY + (1|Monkey),data = csv,
 summary(PFG1)
 plot(PFG1)
 pp_check(PFG1)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     3.94      0.29     3.37     4.50 1.00     3690     3249
-#AgeY          0.06      0.02     0.01     0.10 1.00     3650     3176
 
-#SIGNIFICANT
 
 PFG2 <-brm(PFG_New ~ Sex + (1|Monkey),data = csv,
            family = negbinomial(),
@@ -114,11 +87,6 @@ PFG2 <-brm(PFG_New ~ Sex + (1|Monkey),data = csv,
 summary(PFG2)
 plot(PFG2)
 pp_check(PFG2)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     4.68      0.17     4.36     5.01 1.00     2140     2711
-#SexMale      -0.34      0.27    -0.86     0.18 1.00     2240     2773
-#SexUNK        0.04      0.97    -1.79     2.02 1.00     2940     2410
 
 
 PFG3 <-brm(PFG_New ~ Rank + (1|Monkey),data = csv,
@@ -127,10 +95,7 @@ PFG3 <-brm(PFG_New ~ Rank + (1|Monkey),data = csv,
 summary(PFG3)
 plot(PFG3)
 pp_check(PFG3)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     5.08      0.27     4.56     5.61 1.00     2957     3041
-#Rank         -0.07      0.06    -0.19     0.06 1.00     3131     2783
+
 
 PFG4 <-brm(PFG_New ~ Group + (1|Monkey),data = csv,
            family = negbinomial(),
@@ -138,13 +103,6 @@ PFG4 <-brm(PFG_New ~ Group + (1|Monkey),data = csv,
 summary(PFG4)
 plot(PFG4)
 pp_check(PFG4)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept     4.57      0.25     4.08     5.05 1.00     2208     2831
-#GroupBC      -0.14      0.43    -1.01     0.73 1.00     2657     2905
-#GroupGN       0.38      0.38    -0.38     1.14 1.00     2267     2850
-#GroupLV      -0.67      0.38    -1.41     0.05 1.00     2768     3194
-#GroupRM       0.13      0.36    -0.57     0.84 1.00     2444     2924
 
 PFG5 <-brm(PFG_New ~ Season + (1|Monkey),data = csv,
            family = negbinomial(),
@@ -152,11 +110,466 @@ PFG5 <-brm(PFG_New ~ Season + (1|Monkey),data = csv,
 summary(PFG5)
 plot(PFG5)
 pp_check(PFG5)
-#Population-Level Effects: 
-#Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-#Intercept       4.86      0.19     4.49     5.24 1.00     2681     3324
-#SeasonRAINY    -0.44      0.19    -0.83    -0.06 1.00     4818     3409
-#SIGNIFICANT
+
+
+###### FILA PA #######
+
+hist(csv$FilaPA)
+#binary with more 1's
+mean(csv$FilaPA)
+# [1]  0.975
+var(csv$FilaPA)
+# 0.02449749
+
+FilaPA1 <-brm(FilaPA ~ AgeY + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.85))
+summary(FilaPA1)
+plot(FilaPA1)
+pp_check(FilaPA1)
+
+FilaPA2 <-brm(FilaPA ~ Sex + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.9))
+summary(FilaPA2)
+plot(FilaPA2)
+pp_check(FilaPA2)
+
+FilaPA3 <-brm(FilaPA ~ Rank + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1, 
+              control = list(adapt_delta = 0.95))
+summary(FilaPA3)
+plot(FilaPA3)
+pp_check(FilaPA3)
+
+FilaPA4 <-brm(FilaPA ~ Group + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.95),
+              iter = 5000)
+summary(FilaPA4)
+plot(FilaPA4)
+pp_check(FilaPA4)
+
+FilaPA15 <-brm(FilaPA ~ Season + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(adapt_delta = 0.95))
+summary(FilaPA15)
+plot(FilaPA15)
+pp_check(FilaPA15)
+
+
+######### Fila PFG #########
+hist(csv$FilaPFG)
+#super right skewed, similar to PFG
+mean(csv$FilaPFG)
+# [1] 6.47
+var(csv$FilaPFG)
+# [1] 202.9941
+
+FilaPFG1 <-brm(FilaPFG ~ AgeY + (1|Monkey),data = csv,
+               family = negbinomial(),
+               seed = 1)
+summary(FilaPFG1)
+plot(FilaPFG1)
+pp_check(FilaPFG1)
+
+FilaPFG2 <-brm(FilaPFG ~ Sex + (1|Monkey),data = csv,
+               family = negbinomial(),
+               seed = 1)
+summary(FilaPFG2)
+plot(FilaPFG2)
+pp_check(FilaPFG2)
+
+FilaPFG3 <-brm(FilaPFG ~ Rank + (1|Monkey),data = csv,
+               family = negbinomial(),
+               seed = 1, 
+               control = list(adapt_delta = 0.9))
+summary(FilaPFG3)
+plot(FilaPFG3)
+pp_check(FilaPFG3)
+
+FilaPFG4 <-brm(FilaPFG ~ Group + (1|Monkey),data = csv,
+               family = negbinomial(),
+               seed = 1)
+summary(FilaPFG4)
+plot(FilaPFG4)
+pp_check(FilaPFG4)
+
+
+FilaPFG15 <-brm(FilaPFG ~ Season + (1|Monkey),data = csv,
+                family = negbinomial(),
+                seed = 1)
+summary(FilaPFG15)
+plot(FilaPFG15)
+pp_check(FilaPFG15)
+
+
+##### STEGG PA ######
+
+hist(csv$SteggPA)
+#binary with more 1's
+mean(csv$SteggPA)
+# [1] 0.795
+var(csv$SteggPA)
+# [1] 0.163794
+
+SteggPA1 <-brm(SteggPA ~ AgeY + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1)
+summary(SteggPA1)
+plot(SteggPA1)
+pp_check(SteggPA1)
+
+
+SteggPA2 <-brm(SteggPA ~ Sex + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1)
+summary(SteggPA2)
+plot(SteggPA2)
+
+
+SteggPA3 <-brm(SteggPA ~ Rank + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1, 
+               control = list(adapt_delta = 0.9))
+summary(SteggPA3)
+plot(SteggPA3)
+pp_check(SteggPA3)
+
+SteggPA4 <-brm(SteggPA ~ Group + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1)
+summary(SteggPA4)
+plot(SteggPA4)
+pp_check(SteggPA4)
+
+SteggPA15 <-brm(SteggPA ~ Season + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1)
+summary(SteggPA15)
+plot(SteggPA15)
+pp_check(SteggPA15)
+
+
+######## Stegg PFG ##########
+
+hist(csv$SteggPFG)
+#super right skewed, similar to PFG
+mean(csv$SteggPFG)
+# [1] 116.345
+var(csv$SteggPFG)
+# [1] 65519.05
+
+SteggPFG1 <-brm(SteggPFG ~ AgeY + (1|Monkey),data = csv,
+                family = negbinomial(),
+                seed = 1)
+summary(SteggPFG1)
+plot(SteggPFG1)
+pp_check(SteggPFG1)
+
+
+SteggPFG2 <-brm(SteggPFG ~ Sex + (1|Monkey),data = csv,
+                family = negbinomial(),
+                seed = 1)
+summary(SteggPFG2)
+plot(SteggPFG2)
+pp_check(SteggPFG2)
+
+
+SteggPFG3 <-brm(SteggPFG ~ Rank + (1|Monkey),data = csv,
+                family = negbinomial(),
+                seed = 1, 
+                control = list(adapt_delta = 0.9))
+summary(SteggPFG3)
+plot(SteggPFG3)
+pp_check(SteggPFG3)
+
+SteggPFG4 <-brm(SteggPFG ~ Group + (1|Monkey),data = csv,
+                family = negbinomial(),
+                seed = 1)
+summary(SteggPFG4)
+plot(SteggPFG4)
+pp_check(SteggPFG4)
+
+SteggPFG15 <-brm(SteggPFG ~ Season + (1|Monkey),data = csv,
+                 family = negbinomial(),
+                 seed = 1)
+summary(SteggPFG15)
+plot(SteggPFG15)
+pp_check(SteggPFG15)
+
+
+
+##### Hdimi PA #####
+
+hist(csv$HdimiPA)
+#binary with more 0's
+mean(csv$HdimiPA)
+# [1] 0.035
+var(csv$HdimiPA)
+# [1]0.03394472
+
+HdimiPA1 <-brm(HdimiPA ~ AgeY + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(adapt_delta = 0.9))
+summary(HdimiPA1)
+plot(HdimiPA1)
+pp_check(HdimiPA1)
+
+HdimiPA2 <-brm(HdimiPA ~ Sex + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(max_treedepth = 20))
+summary(HdimiPA2)
+plot(HdimiPA2)
+pp_check(HdimiPA2)
+
+
+HdimiPA3 <-brm(HdimiPA ~ Rank + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1, 
+               control = list(adapt_delta = 0.95))
+summary(HdimiPA3)
+plot(HdimiPA3)
+pp_check(HdimiPA3)
+
+
+HdimiPA4 <-brm(HdimiPA ~ Group + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(adapt_delta = 0.95, max_treedepth = 20),
+               iter = 7000)
+
+summary(HdimiPA4)
+plot(HdimiPA4)
+pp_check(HdimiPA4)
+
+
+HdimiPA15 <-brm(HdimiPA ~ Season + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1,
+                control = list(adapt_delta = 0.99))
+summary(HdimiPA15)
+plot(HdimiPA15)
+pp_check(HdiiPA15)
+
+############ Prosth PA ##########
+hist(csv$ProsthPA)
+#binary with more 0's
+mean(csv$ProsthPA)
+# [1] 0.075
+var(csv$ProsthPA)
+# [1]0.06972362
+
+ProsthPA1 <-brm(ProsthPA ~ AgeY + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1,
+                control = list(adapt_delta = 0.95),
+                iter = 3000)
+summary(ProsthPA1)
+plot(ProsthPA1)
+pp_check(ProsthPA1)
+
+
+ProsthPA2 <-brm(ProsthPA ~ Sex + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1,
+                control = list(adapt_delta = 0.99, max_treedepth = 15),
+)
+summary(ProsthPA2)
+plot(ProsthPA2)
+pp_check(ProsthPA2)
+
+
+ProsthPA3 <-brm(ProsthPA ~ Rank + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1,
+                control = list(adapt_delta = 0.95, max_treedepth = 15),
+                iter = 5000)
+summary(ProsthPA3)
+plot(ProsthPA3)
+pp_check(ProsthPA3)
+
+ProsthPA4 <-brm(ProsthPA ~ Group + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1, 
+                control = list(adapt_delta = 0.995),
+                iter = 10000)
+summary(ProsthPA4)
+plot(ProsthPA4)
+pp_check(ProsthPA4)
+
+
+ProsthPA15 <-brm(ProsthPA ~ Season + (1|Monkey),data = csv,
+                 family = bernoulli(link = "logit"),
+                 seed = 1,
+                 control = list(adapt_delta = 0.95),
+                 iter = 6000)
+summary(ProsthPA15)
+plot(ProsthPA15)
+pp_check(ProsthPA15)
+
+
+###### Subu PA ######
+
+hist(csv$SubuPA)
+#binary with more 1's
+mean(csv$SubuPA)
+# [1] 0.02
+var(csv$SubuPA)
+# [1]0.01969849
+
+SubuPA1 <-brm(SubuPA ~ AgeY + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.95),
+              iter = 4000)
+summary(SubuPA1)
+plot(SubuPA1)
+pp_check(SubuPA1)
+
+SubuPA2 <-brm(SubuPA ~ Sex + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.95))
+summary(SubuPA2)
+plot(SubuPA2)
+pp_check(SubuPA2)
+
+
+SubuPA3 <-brm(SubuPA ~ Rank + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1, 
+              control = list(adapt_delta = 0.95))
+summary(SubuPA3)
+plot(SubuPA3)
+pp_check(SubuPA3)
+
+SubuPA4 <-brm(SubuPA ~ Group + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(max_treedepth = 20),
+              iter = 4000)
+summary(SubuPA4)
+plot(SubuPA4)
+pp_check(SubuPA4)
+
+SubuA15 <-brm(SubuPA ~ Season + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.95))
+summary(SubuA15)
+plot(SubuA15)
+pp_check(SubuA15)
+
+
+#### Spiru PA ####
+hist(csv$SpiruPA)
+#binary with more 1's
+mean(csv$SpiruPA)
+# [1] 0.03
+var(csv$SpiruPA)
+# [1]0.02924623
+
+SpiruPA1 <-brm(SpiruPA ~ AgeY + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(adapt_delta = 0.9))
+summary(SpiruPA1)
+plot(SpiruPA1)
+pp_check(SpiruPA1)
+
+
+SpiruPA2 <-brm(SpiruPA ~ Sex + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(max_treedepth = 20))
+summary(SpiruPA2)
+plot(SpiruPA2)
+pp_check(SpiruPA2)
+
+SpiruPA3 <-brm(SpiruPA ~ Rank + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1, 
+               control = list(adapt_delta = 0.95))
+summary(SpiruPA3)
+plot(SpiruPA3)
+pp_check(SpiruPA3)
+
+SpiruPA4 <-brm(SpiruPA ~ Group + (1|Monkey),data = csv,
+               family = bernoulli(link = "logit"),
+               seed = 1,
+               control = list(adapt_delta = 0.95),
+               iter = 5000)
+summary(SpiruPA4)
+plot(SpiruPA4)
+pp_check(SpiruPA4)
+
+SpiruPA15 <-brm(SpiruPA ~ Season + (1|Monkey),data = csv,
+                family = bernoulli(link = "logit"),
+                seed = 1,
+                control = list(adapt_delta = 0.95))
+summary(SpiruPA15)
+plot(SpiruPA15)
+pp_check(SpiruPA15)
+
+
+#### Eim PA #######
+
+hist(csv$EimPA)
+#binary with more 0's
+mean(csv$EimPA)
+# [1] 0.075
+var(csv$EimPA)
+# [1]0.06972362
+
+EimPA1 <-brm(EimPA ~ AgeY + (1|Monkey),data = csv,
+             family = bernoulli(link = "logit"),
+             seed = 1,
+             control = list(adapt_delta = 0.95),
+             iter = 3000)
+summary(EimPA1)
+plot(EimPA1)
+pp_check(EimPA1)
+
+EimPA2 <-brm(EimPA ~ Sex + (1|Monkey),data = csv,
+             family = bernoulli(link = "logit"),
+             seed = 1,
+             control = list(adapt_delta = 0.95))
+summary(EimPA2)
+plot(EimPA2)
+pp_check(EimPA2)
+
+EimPA3 <-brm(EimPA ~ Rank + (1|Monkey),data = csv,
+             family = bernoulli(link = "logit"),
+             seed = 1,
+             control = list(adapt_delta = 0.9))
+summary(EimPA3)
+plot(EimPA3)
+pp_check(EimPA3)
+
+EimPA4 <-brm(EimPA ~ Group + (1|Monkey),data = csv,
+             family = bernoulli(link = "logit"),
+             seed = 1,
+             control = list(adapt_delta = 0.95))
+summary(EimPA4)
+plot(EimPA4)
+pp_check(EimPA4)
+
+EimPA15 <-brm(EimPA ~ Season + (1|Monkey),data = csv,
+              family = bernoulli(link = "logit"),
+              seed = 1,
+              control = list(adapt_delta = 0.955),
+              iter = 7000)
+summary(EimPA15)
+plot(EimPA15)
+pp_check(EimPA15)
 
 ### PLOTTING ###
 
